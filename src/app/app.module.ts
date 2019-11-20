@@ -19,6 +19,8 @@ import {MatCardModule} from '@angular/material/card';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NotesService } from './notes.service';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
  declarations: [ HeaderComponent,AppComponent],
  imports: [ MatToolbarModule,
@@ -37,7 +39,8 @@ import { NotesService } from './notes.service';
    MatInputModule,
    MatSelectModule,
    HttpClientModule,
-   HttpModule
+   HttpModule,
+   NgxPaginationModule
  ],
  providers: [ NotesService],
  bootstrap: [AppComponent ]

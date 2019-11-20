@@ -12,17 +12,19 @@
     <mat-form-field>
         <textarea [(ngModel)]="note.text" matInput type="text" matInput placeholder="Text" name="text"></textarea>
     </mat-form-field>
-    <button mat-button (click)="addNote1()">Done</button>
+    <button *ngIf="flag===false;" mat-button (click)="addNote1()">Done</button>
+    <button *ngIf="flag;"  mat-button (click)="updateNote1(index)">Update</button>
 </mat-expansion-panel>
 <!-- Label to display any error messages -->
 <label class="error-message">{{ errMessage }}</label>
 <!-- To add notes -->
 <!-- Load and display the collection of notes from server as Material Cards with card title set to note title and card content set to note text  -->
 <section>
-    <mat-card *ngFor="let item of notes">
+    <mat-card *ngFor="let item of notes | paginate: { itemsPerPage: 2, currentPage: p }">
         <mat-card-title>{{item.title}}</mat-card-title>
-        <mat-card-content>
-            {{item.text}}
-        </mat-card-content>
+        <mat-card-content>{{item.text}}</mat-card-content>
+        <button mat-button (click)="delete(item.id)">DELETE</button>
+        <button (click)="edit(item)" mat-button>EDIT</button>
     </mat-card>
-</section>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </section>
